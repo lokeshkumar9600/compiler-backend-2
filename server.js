@@ -4,10 +4,13 @@ const bodyParser = require("body-parser")
 const app =  express();
 const cors = require('cors');
 app.use(cors())
-
+const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/",(req,res)=>{
+    return res.status(200).json({message: "welcome to online compiler"})
+})
 
 app.get("/getOutput",(req,res)=>
 {
@@ -35,6 +38,6 @@ app.get("/getOutput",(req,res)=>
     });
 })
 
-app.listen(3001,(req,res)=>{
+app.listen(port,(req,res)=>{
     console.log("server is running");
 })
